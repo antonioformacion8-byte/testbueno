@@ -1,0 +1,774 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>La UDCA, el PAE y la Defensa Legal</title>
+    <!-- Carga de Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Configuración de Fuentes y Diseño Profesional -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&family=Montserrat:wght@600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        /* Variables y tipografía */
+        :root {
+            --color-primary: #007bff; /* Azul corporativo, similar al de las instituciones de salud */
+            --color-secondary: #28a745; /* Verde para destacar acciones correctas o procesos */
+            --color-danger: #dc3545; /* Rojo para alertas y riesgos legales */
+            --color-text: #343a40;
+            --color-bg-light: #f8f9fa;
+            --font-header: 'Montserrat', sans-serif;
+            --font-body: 'Roboto', sans-serif;
+        }
+        body {
+            font-family: var(--font-body);
+            background-color: var(--color-bg-light);
+            overflow: hidden;
+            color: var(--color-text);
+        }
+        h1, h2, h3 {
+            font-family: var(--font-header);
+            color: var(--color-primary);
+        }
+        /* Estilos base de la diapositiva */
+        .slide {
+            width: 100vw;
+            height: 100vh;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 40px;
+            text-align: center;
+            position: absolute;
+            top: 0;
+            left: 0;
+            transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
+            opacity: 0;
+            transform: translateX(100%);
+        }
+        .slide-content {
+            background-color: white;
+            border-radius: 1.5rem;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+            max-width: 1200px;
+            width: 95%;
+            min-height: 85%;
+            padding: 3rem 5rem;
+            text-align: left;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            z-index: 10;
+        }
+        .slide.active {
+            display: flex;
+            opacity: 1;
+            transform: translateX(0);
+        }
+        .slide.prev {
+            transform: translateX(-100%);
+        }
+        /* Estilo para el botón de Gemini (Centrado en la diapositiva) */
+        #gemini-float-btn {
+            position: fixed;
+            bottom: 6rem; /* Elevado sobre la barra de navegación */
+            left: 50%; /* Centrado horizontalmente */
+            transform: translateX(-50%); /* Ajuste para el centrado perfecto */
+            width: 4rem;
+            height: 4rem;
+            background-color: #fbbc05; /* Amarillo de Gemini/Google */
+            color: var(--color-text);
+            border-radius: 9999px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            cursor: pointer;
+            transition: transform 0.2s, background-color 0.2s;
+            z-index: 30;
+        }
+        #gemini-float-btn:hover {
+            background-color: #e2b004;
+            transform: scale(1.1) translateX(-50%);
+        }
+        /* Elementos específicos */
+        .key-box {
+            background-color: #e6f7ff;
+            border-left: 5px solid var(--color-primary);
+        }
+        .pae-step {
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .pae-step:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+        }
+        .data-point {
+            border-bottom: 2px dashed #ccc;
+        }
+
+        /* Responsividad para pantallas pequeñas */
+        @media (max-width: 768px) {
+            .slide-content {
+                padding: 2rem;
+            }
+            .grid-cols-4 {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Contenedor de las diapositivas -->
+    <main id="presentation-container">
+
+        <!-- SLIDE 1: TÍTULO -->
+        <section class="slide active" id="slide-1">
+            <div class="slide-content text-center">
+                <p class="text-3xl mb-4 text-gray-500 font-light">Jornada de Formación Continua</p>
+                <h1 class="text-6xl font-extrabold tracking-tight mb-8 text-primary">
+                    La Historia Clínica como Prueba <br>y el Rol del Enfermero
+                </h1>
+                <p class="text-2xl text-gray-700">Unidad de Documentación Clínica y Archivo (UDCA)</p>
+                <p class="text-2xl text-gray-700">Proceso de Atención Enfermera (PAE)</p>
+                <div class="mt-10">
+                    <p class="text-xl font-bold">Antonio R. (Enfermero)</p>
+                    <p class="text-lg text-gray-500">Noviembre 2025</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- SLIDE 2: INTRODUCCIÓN Y CONTEXTO -->
+        <section class="slide" id="slide-2">
+            <div class="slide-content">
+                <h2 class="text-4xl font-bold mb-6 border-b-4 border-secondary pb-2">Introducción: ¿Por qué estamos aquí?</h2>
+                <div class="flex space-x-8">
+                    <div class="w-1/2">
+                        <p class="text-xl leading-relaxed mb-4">
+                            La documentación clínica ha evolucionado de un mero registro asistencial a la **principal herramienta de defensa legal** de la Administración Sanitaria y de sus profesionales.
+                        </p>
+                        <ul class="list-disc list-inside text-xl space-y-3">
+                            <li>Aumento de la judicialización de la asistencia.</li>
+                            <li>Énfasis en la Responsabilidad Patrimonial de la Administración.</li>
+                            <li>La HCE es el único testimonio documental disponible.</li>
+                        </ul>
+                    </div>
+                    <div class="w-1/2 key-box p-6 rounded-xl shadow-lg flex items-center">
+                        <i class="fas fa-gavel text-primary text-5xl mr-6"></i>
+                        <div>
+                            <h3 class="text-2xl font-bold mb-2">Objetivo Clave</h3>
+                            <p class="text-xl text-gray-700">Comprender la función legal de la UDCA y la importancia del registro de enfermería (PAE) para garantizar la *Lex Artis ad hoc*.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECCIÓN I: LA UDCA Y LOS SISTEMAS DE INFORMACIÓN (Diapositivas 3-6) -->
+
+        <!-- SLIDE 3: ROL DE LA UDCA -->
+        <section class="slide" id="slide-3">
+            <div class="slide-content">
+                <h2 class="text-4xl font-bold mb-6 border-b-4 border-primary pb-2">I. El Custodio: Unidad de Documentación Clínica y Archivo (UDCA)</h2>
+                <div class="grid grid-cols-2 gap-8 text-xl">
+                    <div class="p-4 bg-gray-50 rounded-lg shadow-md">
+                        <i class="fas fa-archive text-primary text-3xl mb-3"></i>
+                        <h3 class="text-2xl font-bold mb-2">Función Asistencial/Gestora</h3>
+                        <ul class="list-disc list-inside space-y-2 text-gray-700">
+                            <li>Custodia física y digital de la HCE.</li>
+                            <li>Codificación de diagnósticos y procedimientos (CMBD / CIE-10).</li>
+                            <li>Garantía de la accesibilidad y el préstamo de la HCE.</li>
+                        </ul>
+                    </div>
+                    <div class="p-4 bg-red-50 rounded-lg shadow-md">
+                        <i class="fas fa-user-lock text-danger text-3xl mb-3"></i>
+                        <h3 class="text-2xl font-bold mb-2">Función Legal y de Seguridad</h3>
+                        <ul class="list-disc list-inside space-y-2 text-gray-700">
+                            <li>**Garante de la Confidencialidad** (LOPD y Ley 41/2002).</li>
+                            <li>**Interlocutor Judicial Único:** Gestiona oficios de Juzgados y el Comisario de Defensa del Paciente.</li>
+                            <li>Aporta la copia **autenticada y sellada** de la HCE ante requerimientos.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SLIDE 4: SISTEMAS DE INFORMACIÓN (HCE) -->
+        <section class="slide" id="slide-4">
+            <div class="slide-content">
+                <h2 class="text-4xl font-bold mb-6 border-b-4 border-primary pb-2">Sistemas de Información de la HCE (Comunidad Valenciana)</h2>
+                <table class="w-full border-collapse text-xl shadow-lg rounded-lg overflow-hidden">
+                    <thead>
+                        <tr class="bg-primary text-white">
+                            <th class="p-3">Sistema</th>
+                            <th class="p-3">Ámbito</th>
+                            <th class="p-3">Rol del Enfermero</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr class="bg-blue-50">
+                            <td class="p-3 font-semibold data-point">PANGEA</td>
+                            <td class="p-3">Hospitalario (Piloto HGV)</td>
+                            <td class="p-3">Registro de PAE, Gráficas, Órdenes, Evolución.</td>
+                        </tr>
+                        <tr>
+                            <td class="p-3 font-semibold data-point">ORION-CLINIC</td>
+                            <td class="p-3">Hospitalario (Resto Red)</td>
+                            <td class="p-3">HCE clínica, homólogo de PANGEA.</td>
+                        </tr>
+                        <tr class="bg-blue-50">
+                            <td class="p-3 font-semibold data-point">ABUCASSY / SIA</td>
+                            <td class="p-3">Atención Primaria</td>
+                            <td class="p-3">Historia de Salud Electrónica.</td>
+                        </tr>
+                        <tr>
+                            <td class="p-3 font-semibold data-point">ALUMBRA</td>
+                            <td class="p-3">Gestión / Estadística</td>
+                            <td class="p-3">Destino final de los datos codificados por UDCA (Información Gerencial).</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <p class="text-lg mt-6 text-gray-600 italic">Nuestro foco está en PANGEA: El registro de enfermería debe ser trazable, legible y completo.</p>
+            </div>
+        </section>
+
+        <!-- SLIDE 5: INTEGRIDAD DEL DATO -->
+        <section class="slide" id="slide-5">
+            <div class="slide-content">
+                <h2 class="text-4xl font-bold mb-6 border-b-4 border-primary pb-2">El Dato Electrónico: Trazabilidad e Integridad</h2>
+                <div class="grid grid-cols-3 gap-8 text-center">
+                    <div class="p-6 key-box rounded-lg shadow-md">
+                        <i class="fas fa-fingerprint text-primary text-4xl mb-3"></i>
+                        <h3 class="text-xl font-bold mb-2">Identidad (¿Quién?)</h3>
+                        <p class="text-lg">Todo registro está asociado a un **usuario único** (tu firma digital). La responsabilidad es individual.</p>
+                    </div>
+                    <div class="p-6 key-box rounded-lg shadow-md">
+                        <i class="fas fa-clock text-primary text-4xl mb-3"></i>
+                        <h3 class="text-xl font-bold mb-2">Tiempo (¿Cuándo?)</h3>
+                        <p class="text-lg">El sistema registra el **momento exacto** de la creación y modificación. La OPORTUNIDAD es vital.</p>
+                    </div>
+                    <div class="p-6 key-box rounded-lg shadow-md">
+                        <i class="fas fa-lock text-primary text-4xl mb-3"></i>
+                        <h3 class="text-xl font-bold mb-2">Inalterabilidad</h3>
+                        <p class="text-lg">La HCE electrónica previene la manipulación de datos, a diferencia del papel. Todo cambio deja huella.</p>
+                    </div>
+                </div>
+                <p class="text-2xl mt-8 font-semibold text-danger border-l-4 border-danger pl-4">
+                    Al ser electrónica, la defensa se centra en la **omisión** (lo que no se registró a tiempo), no tanto en la falsedad.
+                </p>
+            </div>
+        </section>
+
+        <!-- SLIDE 6: EL ACTO ADMINISTRATIVO DE LA HCE -->
+        <section class="slide" id="slide-6">
+            <div class="slide-content">
+                <h2 class="text-4xl font-bold mb-6 border-b-4 border-primary pb-2">La HCE: Documento Público y Acto Administrativo</h2>
+                <div class="flex space-x-8">
+                    <div class="w-1/2">
+                        <p class="text-xl leading-relaxed mb-4">
+                            La HCE no es un simple apunte; es un documento oficial que acredita la prestación del servicio sanitario público.
+                        </p>
+                        <h3 class="text-2xl font-bold mb-3 mt-4 text-primary">Implicación para el Enfermero</h3>
+                        <ul class="list-disc list-inside text-xl space-y-3">
+                            <li>Tu registro tiene **valor probatorio** ante un tribunal.</li>
+                            <li>La calidad y la claridad del registro deben ser equivalentes a un documento legal.</li>
+                            <li>No registrar es asumir que la prestación **no se realizó**.</li>
+                        </ul>
+                    </div>
+                    <div class="w-1/2 p-6 bg-yellow-100 rounded-xl shadow-lg border-l-4 border-yellow-500">
+                        <i class="fas fa-exclamation-circle text-yellow-600 text-4xl mb-3"></i>
+                        <h3 class="text-2xl font-bold text-yellow-700 mb-2">El Principio de Oportunidad</h3>
+                        <p class="text-lg">El registro debe ser **contemporáneo** a la intervención. Un apunte de turno completo o un registro a posteriori pierde credibilidad como prueba fidedigna.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECCIÓN II: EL MARCO LEGAL (Diapositivas 7-10) -->
+
+        <!-- SLIDE 7: LEYES CLAVE -->
+        <section class="slide" id="slide-7">
+            <div class="slide-content">
+                <h2 class="text-4xl font-bold mb-6 border-b-4 border-danger pb-2">II. Marco Legal: Leyes que Afectan al Registro</h2>
+                <div class="grid grid-cols-2 gap-8 text-xl">
+                    <div class="p-4 bg-red-50 rounded-lg shadow-md border-l-4 border-danger">
+                        <h3 class="text-2xl font-bold mb-2 text-danger">Ley 41/2002 (Autonomía del Paciente)</h3>
+                        <p class="text-lg">Define la HCE, el contenido mínimo, la finalidad y los derechos de acceso del paciente.</p>
+                        <ul class="list-disc list-inside text-sm mt-2">
+                            <li>Derecho a la Intimidad.</li>
+                            <li>Definición de **Lex Artis ad hoc**.</li>
+                        </ul>
+                    </div>
+                    <div class="p-4 bg-red-50 rounded-lg shadow-md border-l-4 border-danger">
+                        <h3 class="text-2xl font-bold mb-2 text-danger">LOPD (Protección de Datos)</h3>
+                        <p class="text-lg">Clasifica la HCE como **datos especialmente protegidos** (salud), exigiendo medidas de seguridad máximas.</p>
+                        <ul class="list-disc list-inside text-sm mt-2">
+                            <li>Acceso restringido (solo lo estrictamente necesario).</li>
+                            <li>Sanciones por revelación o acceso indebido.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SLIDE 8: RESPONSABILIDAD PATRIMONIAL -->
+        <section class="slide" id="slide-8">
+            <div class="slide-content">
+                <h2 class="text-4xl font-bold mb-6 border-b-4 border-danger pb-2">El Fantasma Legal: La Responsabilidad Patrimonial</h2>
+                <div class="flex space-x-8">
+                    <div class="w-1/3 text-center p-4 bg-gray-100 rounded-lg">
+                        <i class="fas fa-hand-holding-dollar text-danger text-4xl mb-3"></i>
+                        <h3 class="text-xl font-bold">Concepto</h3>
+                        <p class="text-lg">Indemnización por daños causados por el funcionamiento normal o anormal del servicio público.</p>
+                    </div>
+                    <div class="w-1/3 text-center p-4 bg-gray-100 rounded-lg">
+                        <i class="fas fa-link text-danger text-4xl mb-3"></i>
+                        <h3 class="text-xl font-bold">Nexo Causal (CRÍTICO)</h3>
+                        <p class="text-lg">El demandante debe probar que el daño es consecuencia directa del error asistencial (acción/omisión) y no de la enfermedad.</p>
+                    </div>
+                    <div class="w-1/3 text-center p-4 bg-gray-100 rounded-lg">
+                        <i class="fas fa-balance-scale-right text-danger text-4xl mb-3"></i>
+                        <h3 class="text-xl font-bold">Carga de la Prueba</h3>
+                        <p class="text-lg">Recae en el paciente. La defensa del centro se basa al **100% en el registro HCE**.</p>
+                    </div>
+                </div>
+                <p class="text-2xl mt-8 font-semibold text-primary italic">
+                    Nuestra defensa no es la persona, sino la HCE que demuestra que se cumplió con la Lex Artis.
+                </p>
+            </div>
+        </section>
+
+        <!-- SLIDE 9: CONCEPTO DE LEX ARTIS -->
+        <section class="slide" id="slide-9">
+            <div class="slide-content">
+                <h2 class="text-4xl font-bold mb-6 border-b-4 border-danger pb-2">La Lex Artis ad hoc (Estándar de Cuidado)</h2>
+                <p class="text-xl mb-6 leading-relaxed">
+                    Es el criterio que utiliza el perito médico o enfermero para juzgar la actuación. No es la perfección, sino la actuación diligente esperada en ese momento, por un profesional medio, con los medios disponibles.
+                </p>
+                <div class="flex space-x-8">
+                    <div class="w-1/2 p-6 bg-red-100 rounded-xl shadow-lg border-l-4 border-danger">
+                        <h3 class="text-2xl font-bold text-danger mb-3">La HCE DEBE Probar</h3>
+                        <ul class="list-disc list-inside text-xl space-y-2">
+                            <li>El seguimiento de protocolos y guías clínicas.</li>
+                            <li>La correcta aplicación del PAE.</li>
+                            <li>La valoración y reevaluación de los problemas.</li>
+                        </ul>
+                    </div>
+                    <div class="w-1/2 p-6 bg-red-100 rounded-xl shadow-lg border-l-4 border-danger">
+                        <h3 class="text-2xl font-bold text-danger mb-3">El Perito Busca</h3>
+                        <ul class="list-disc list-inside text-xl space-y-2">
+                            <li>**Continuidad asistencial:** Que no haya saltos temporales.</li>
+                            <li>**Explicación de resultados:** ¿Se reevaluó la ineficacia de un tratamiento?</li>
+                            <li>**Diagnósticos de Enfermería:** ¿Se detectaron los problemas de autonomía?</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SLIDE 10: EL ROL DEL PERITO -->
+        <section class="slide" id="slide-10">
+            <div class="slide-content">
+                <h2 class="text-4xl font-bold mb-6 border-b-4 border-danger pb-2">El Peritaje Enfermero en el Proceso Judicial</h2>
+                <div class="flex space-x-8 items-start">
+                    <div class="w-1/3 text-center">
+                        <i class="fas fa-user-tie text-danger text-6xl mb-4"></i>
+                        <h3 class="text-2xl font-bold">Figura Clave</h3>
+                        <p class="text-lg">El perito de enfermería traduce el lenguaje clínico del PAE al lenguaje legal del juez.</p>
+                    </div>
+                    <div class="w-2/3 p-6 key-box rounded-xl shadow-xl">
+                        <h3 class="text-2xl font-bold mb-3 text-primary">¿Qué evalúa el Perito de Enfermería?</h3>
+                        <ul class="list-decimal list-inside text-xl space-y-2">
+                            <li>Cumplimiento de las 5 fases del PAE.</li>
+                            <li>Utilización de lenguaje estandarizado (NANDA-NOC-NIC).</li>
+                            <li>Documentación del plan de cuidados y las modificaciones.</li>
+                            <li>Registro de la educación para la salud (información dada al paciente).</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECCIÓN III: EL PROCESO DE ATENCIÓN ENFERMERA (PAE) (Diapositivas 11-20) -->
+
+        <!-- SLIDE 11: INTRODUCCIÓN AL PAE -->
+        <section class="slide" id="slide-11">
+            <div class="slide-content">
+                <h2 class="text-4xl font-bold mb-6 border-b-4 border-secondary pb-2">III. El PAE: La Metodología Asistencial y Legal</h2>
+                <p class="text-xl mb-6 leading-relaxed">
+                    El PAE es la base científica y legal de la práctica enfermera. Es un proceso sistemático que garantiza la continuidad y la calidad del cuidado.
+                </p>
+                <div class="grid grid-cols-5 gap-4 text-center">
+                    <div class="pae-step p-4 bg-secondary text-white rounded-lg shadow-md">1. Valoración</div>
+                    <div class="pae-step p-4 bg-secondary text-white rounded-lg shadow-md">2. Diagnóstico</div>
+                    <div class="pae-step p-4 bg-secondary text-white rounded-lg shadow-md">3. Planificación</div>
+                    <div class="pae-step p-4 bg-secondary text-white rounded-lg shadow-md">4. Ejecución</div>
+                    <div class="pae-step p-4 bg-secondary text-white rounded-lg shadow-md">5. Evaluación</div>
+                </div>
+                <h3 class="text-2xl font-bold mt-8 text-danger border-l-4 border-danger pl-4">El Aforismo Fatal: Si no está en el PAE, no existe.</h3>
+            </div>
+        </section>
+
+        <!-- SLIDE 12: FASE 1 - VALORACIÓN -->
+        <section class="slide" id="slide-12">
+            <div class="slide-content">
+                <h2 class="text-4xl font-bold mb-6 border-b-4 border-secondary pb-2">Fase 1: La Valoración (El Punto de Partida Legal)</h2>
+                <div class="flex space-x-8">
+                    <div class="w-1/2">
+                        <h3 class="text-2xl font-bold mb-3 text-primary">Contenido Mínimo de la Valoración</h3>
+                        <ul class="list-disc list-inside text-xl space-y-2">
+                            <li>Patrones Funcionales de Gordon (Estructura más habitual).</li>
+                            <li>Examen físico y datos objetivos (constantes vitales, estado de la piel).</li>
+                            <li>Datos subjetivos (lo que el paciente refiere, con comillas).</li>
+                        </ul>
+                    </div>
+                    <div class="w-1/2 p-6 bg-green-50 rounded-xl shadow-lg border-l-4 border-secondary">
+                        <h3 class="text-2xl font-bold text-secondary mb-3">Riesgo de Omisión</h3>
+                        <p class="text-xl">Si el paciente desarrolla una **Úlcera por Presión (UPP)** y no hay registro de la valoración inicial del riesgo (Escala Braden/Norton), es una negligencia *prima facie* (a primera vista).</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SLIDE 13: FASE 2 - DIAGNÓSTICO -->
+        <section class="slide" id="slide-13">
+            <div class="slide-content">
+                <h2 class="text-4xl font-bold mb-6 border-b-4 border-secondary pb-2">Fase 2: El Diagnóstico Enfermero (NANDA)</h2>
+                <p class="text-xl mb-6 leading-relaxed">
+                    Es el juicio clínico sobre las respuestas humanas a problemas de salud reales o potenciales. Es el puente entre los datos y la acción.
+                </p>
+                <div class="key-box p-6 rounded-xl shadow-lg">
+                    <h3 class="text-2xl font-bold mb-3 text-primary">Estructura P-E-S (Problema - Etiología - Signos/Síntomas)</h3>
+                    <p class="text-lg font-mono bg-gray-100 p-3 rounded-md">
+                        Ejemplo: **Dolor agudo** (Problema NANDA) r/c **agente lesivo físico** (etiología) m/p **escala EVA 8/10 y facies de dolor** (signos).
+                    </p>
+                </div>
+                <h3 class="text-2xl font-bold mt-6 text-danger border-l-4 border-danger pl-4">Requisito Legal: El Diagnóstico Guía la Intervención.</h3>
+                <p class="text-xl mt-2 text-gray-700">Un cuidado sin diagnóstico no tiene justificación metodológica.</p>
+            </div>
+        </section>
+
+        <!-- SLIDE 14: FASE 3 - PLANIFICACIÓN (NOC/NIC) -->
+        <section class="slide" id="slide-14">
+            <div class="slide-content">
+                <h2 class="text-4xl font-bold mb-6 border-b-4 border-secondary pb-2">Fase 3: Planificación (NOC y NIC)</h2>
+                <div class="grid grid-cols-2 gap-8 text-xl">
+                    <div>
+                        <i class="fas fa-bullseye text-secondary text-3xl mb-2"></i>
+                        <h3 class="text-2xl font-bold mb-2">Resultados (NOC)</h3>
+                        <p class="text-lg">Los objetivos medibles que esperamos alcanzar. Deben ser específicos, medibles, alcanzables, relevantes y con límite de tiempo (SMART).</p>
+                        <p class="text-sm italic mt-2">Ejemplo: "Nivel de dolor disminuido a 3/10 en las próximas 2 horas."</p>
+                    </div>
+                    <div>
+                        <i class="fas fa-hand-holding-medical text-secondary text-3xl mb-2"></i>
+                        <h3 class="text-2xl font-bold mb-2">Intervenciones (NIC)</h3>
+                        <p class="text-lg">Las acciones específicas y delegables a realizar. Es el plan de acción concreto.</p>
+                        <p class="text-sm italic mt-2">Ejemplo: "Administración de analgésico pautado y monitorización de efectos."</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SLIDE 15: FASE 4 - EJECUCIÓN -->
+        <section class="slide" id="slide-15">
+            <div class="slide-content">
+                <h2 class="text-4xl font-bold mb-6 border-b-4 border-secondary pb-2">Fase 4: Ejecución (El Registro de la Acción)</h2>
+                <p class="text-xl mb-6 leading-relaxed">
+                    Es el registro de lo que se hizo, cuándo se hizo y la reacción inicial del paciente.
+                </p>
+                <div class="p-6 bg-blue-50 rounded-xl shadow-lg border-l-4 border-primary">
+                    <h3 class="text-2xl font-bold mb-3 text-primary">Reglas de Oro de la Ejecución</h3>
+                    <ul class="list-decimal list-inside text-xl space-y-2">
+                        <li>**Concisión:** Frases cortas, claras y sin ambigüedades.</li>
+                        <li>**Legibilidad:** Evitar abreviaturas no estandarizadas.</li>
+                        <li>**Fidelidad:** Registrar sólo lo que tú has hecho (no asumir el trabajo de otros).</li>
+                        <li>**Firma:** Todo registro debe estar validado con tu firma electrónica y hora.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- SLIDE 16: FASE 5 - EVALUACIÓN (CRÍTICA) -->
+        <section class="slide" id="slide-16">
+            <div class="slide-content">
+                <h2 class="text-4xl font-bold mb-6 border-b-4 border-danger pb-2">Fase 5: La Evaluación (El Cierre del Círculo Legal)</h2>
+                <div class="flex space-x-8 items-start">
+                    <div class="w-1/2 p-6 bg-red-100 rounded-xl shadow-xl">
+                        <h3 class="text-2xl font-bold text-danger mb-3">¡El Error Más Común!</h3>
+                        <p class="text-xl">
+                            Se ejecuta una NIC (ej. administra un antihipertensivo), pero **no se reevalúa** el resultado (NOC).
+                        </p>
+                        <p class="text-xl mt-3 font-semibold text-danger">Consecuencia:</p>
+                        <p class="text-lg italic">Legalmente, no se puede demostrar que la intervención fue efectiva ni que se actuó diligentemente ante el problema inicial.</p>
+                    </div>
+                    <div class="w-1/2 p-6 bg-green-100 rounded-xl shadow-xl border-l-4 border-secondary">
+                        <h3 class="text-2xl font-bold text-secondary mb-3">La Evaluación Correcta</h3>
+                        <p class="text-xl">
+                            Debe responder a: **¿Se alcanzó el resultado NOC?** ¿Si no se alcanzó, **qué modificamos** en el Plan (nueva NIC/Diagnóstico)?
+                        </p>
+                        <p class="text-lg mt-3">Ejemplo: "Nivel de dolor post-analgésico: 3/10. Objetivo alcanzado. Continúa monitorización pautada."</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SLIDE 17: CASO PRÁCTICO I - UPP -->
+        <section class="slide" id="slide-17">
+            <div class="slide-content">
+                <h2 class="text-4xl font-bold mb-6 border-b-4 border-danger pb-2">Caso Práctico I: Prevención de Úlceras por Presión (UPP)</h2>
+                <div class="key-box p-6 rounded-xl shadow-lg mb-6">
+                    <h3 class="text-2xl font-bold mb-3 text-primary">Escenario: Paciente desarrolla UPP Grado II en talón.</h3>
+                </div>
+                <div class="grid grid-cols-3 gap-6 text-xl text-center">
+                    <div class="p-4 border-2 border-danger rounded-lg">
+                        <p class="font-bold text-danger">Defensa Débil (Fallo)</p>
+                        <p class="text-lg mt-1">No hay registro de Braden. No hay Diagnóstico de "Riesgo de Deterioro de la Integridad Cutánea". Solo hay registro de "cambios posturales".</p>
+                    </div>
+                    <div class="p-4 border-2 border-secondary rounded-lg">
+                        <p class="font-bold text-secondary">Defensa Fuerte (Correcto)</p>
+                        <p class="text-lg mt-1">Valoración Braden registrada. Diagnóstico NANDA presente. NIC: "Cuidados de la zona de presión". Se registra la frecuencia de los cambios posturales y la reevaluación diaria de la piel.</p>
+                    </div>
+                    <div class="p-4 border-2 border-primary rounded-lg">
+                        <p class="font-bold text-primary">Conclusión Legal</p>
+                        <p class="text-lg mt-1">Sin PAE completo, se asume que la UPP es un daño evitable por **mala praxis**, con nexo causal directo. El centro pierde.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SLIDE 18: CASO PRÁCTICO II - ADMINISTRACIÓN -->
+        <section class="slide" id="slide-18">
+            <div class="slide-content">
+                <h2 class="text-4xl font-bold mb-6 border-b-4 border-danger pb-2">Caso Práctico II: Error de Medicación (Omisión en la Vigilancia)</h2>
+                <div class="key-box p-6 rounded-xl shadow-lg mb-6">
+                    <h3 class="text-2xl font-bold mb-3 text-primary">Escenario: Administración de fármaco que causa reacción adversa.</h3>
+                </div>
+                <div class="flex space-x-8">
+                    <div class="w-1/2">
+                        <h3 class="text-2xl font-bold mb-3 text-danger">El Fallo de Enfermería</h3>
+                        <p class="text-xl">
+                            Se ejecuta la administración, pero la ejecución NO incluye la vigilancia posterior.
+                            <br><span class="font-bold text-danger">Registro:</span> "Administrado Ciprofloxacino 1000 mg IV a las 10:00 h."
+                        </p>
+                    </div>
+                    <div class="w-1/2 p-6 bg-red-100 rounded-xl shadow-lg border-l-4 border-danger">
+                        <h3 class="text-2xl font-bold text-danger mb-3">La Defensa Fallida</h3>
+                        <p class="text-lg">El perito argumentará que la **Lex Artis** exige vigilancia post-administración. Si el paciente empeora, el PAE incompleto demuestra que la enfermera **no reevaluó la eficacia y la seguridad del fármaco** a tiempo.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SLIDE 19: CASO PRÁCTICO III - RECHAZO DE TRATAMIENTO -->
+        <section class="slide" id="slide-19">
+            <div class="slide-content">
+                <h2 class="text-4xl font-bold mb-6 border-b-4 border-danger pb-2">Caso Práctico III: Rechazo de Tratamiento</h2>
+                <div class="key-box p-6 rounded-xl shadow-lg mb-6">
+                    <h3 class="text-2xl font-bold mb-3 text-primary">Escenario: Paciente se niega a la medicación o a una prueba.</h3>
+                </div>
+                <div class="p-6 bg-yellow-100 rounded-xl shadow-lg border-l-4 border-yellow-500">
+                    <h3 class="text-2xl font-bold text-yellow-700 mb-3"><i class="fas fa-file-signature mr-2"></i> Documentación Obligatoria</h3>
+                    <ul class="list-disc list-inside text-xl space-y-2">
+                        <li>**Explicación:** Registrar que se explicó el **riesgo y las consecuencias** del rechazo.</li>
+                        <li>**Testigo:** Si es posible, que otro profesional (enfermera o médico) presencie el rechazo y firme.</li>
+                        <li>**Firma del Paciente:** El paciente debe firmar el documento de alta voluntaria/rechazo específico.</li>
+                    </ul>
+                    <p class="text-lg mt-3">Un rechazo bien documentado tras el consentimiento informado es una **defensa inexpugnable**.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- SLIDE 20: TÉCNICAS DE REGISTRO AVANZADAS (SOAPIE) -->
+        <section class="slide" id="slide-20">
+            <div class="slide-content">
+                <h2 class="text-4xl font-bold mb-6 border-b-4 border-secondary pb-2">Estructura Avanzada: El Registro Orientado al Problema (SOAPIE)</h2>
+                <p class="text-xl mb-6 leading-relaxed">
+                    Un método estructurado que asegura que todas las fases del PAE están cubiertas en el registro de evolución.
+                </p>
+                <div class="grid grid-cols-6 gap-4 text-center text-sm font-bold">
+                    <div class="p-3 bg-secondary text-white rounded-md">S (Subjetivo)</div>
+                    <div class="p-3 bg-secondary text-white rounded-md">O (Objetivo)</div>
+                    <div class="p-3 bg-secondary text-white rounded-md">A (Análisis/Diagnóstico)</div>
+                    <div class="p-3 bg-secondary text-white rounded-md">P (Planificación)</div>
+                    <div class="p-3 bg-secondary text-white rounded-md">I (Intervención/Ejecución)</div>
+                    <div class="p-3 bg-danger text-white rounded-md">E (Evaluación)</div>
+                </div>
+                <p class="text-lg mt-4 text-gray-700 italic">**"E" de Evaluación** es la parte más olvidada, pero legalmente la más importante: demuestra si el Plan funcionó.</p>
+            </div>
+        </section>
+
+        <!-- SECCIÓN IV: CONCLUSIONES Y RECOMENDACIONES (Diapositivas 21-26) -->
+
+        <!-- SLIDE 21: EL CONCEPTO CLAVE -->
+        <section class="slide" id="slide-21">
+            <div class="slide-content text-center">
+                <h2 class="text-4xl font-extrabold mb-6 text-primary">RESUMEN: Un Triángulo Inseparable</h2>
+                <div class="my-10">
+                    <i class="fas fa-triangle-exclamation text-8xl text-danger animate-bounce"></i>
+                </div>
+                <div class="flex justify-center space-x-12 text-2xl font-bold text-gray-700">
+                    <p class="p-4 border-b-4 border-primary">1. Buena Praxis</p>
+                    <p class="p-4 border-b-4 border-secondary">2. PAE Completo</p>
+                    <p class="p-4 border-b-4 border-danger">3. Defensa Legal</p>
+                </div>
+                <p class="text-xl mt-8 font-semibold italic text-gray-600">
+                    Una no existe sin la otra. La buena praxis **DEBE** ser documentada con un PAE completo para que sirva de defensa legal.
+                </p>
+            </div>
+        </section>
+
+        <!-- SLIDE 22: DECALOGO DEL ENFERMERO -->
+        <section class="slide" id="slide-22">
+            <div class="slide-content">
+                <h2 class="text-4xl font-bold mb-6 border-b-4 border-primary pb-2">Decálogo de Registro para el Enfermero/a (PANGEA)</h2>
+                <ul class="list-none space-y-3 text-xl">
+                    <li class="flex items-start"><i class="fas fa-check-circle text-secondary mt-1 mr-4"></i> **Oportunidad:** Registra inmediatamente (no al final del turno).</li>
+                    <li class="flex items-start"><i class="fas fa-check-circle text-secondary mt-1 mr-4"></i> **Identificación:** Asegúrate de que el registro tiene tu nombre y hora correctos.</li>
+                    <li class="flex items-start"><i class="fas fa-check-circle text-secondary mt-1 mr-4"></i> **Lenguaje:** Usa NANDA/NOC/NIC y terminología clínica estandarizada.</li>
+                    <li class="flex items-start"><i class="fas fa-check-circle text-secondary mt-1 mr-4"></i> **Reevaluación:** NUNCA olvides la Fase 5 (Evaluación) post-intervención.</li>
+                    <li class="flex items-start"><i class="fas fa-check-circle text-secondary mt-1 mr-4"></i> **Legibilidad:** Utiliza mayúsculas y minúsculas y evita la jerga no oficial.</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- SLIDE 23: CONSEJOS EN CASO DE JUICIO -->
+        <section class="slide" id="slide-23">
+            <div class="slide-content">
+                <h2 class="text-4xl font-bold mb-6 border-b-4 border-danger pb-2">Si te Requieran: Consejos Prácticos</h2>
+                <div class="grid grid-cols-2 gap-8 text-xl">
+                    <div class="p-4 bg-red-100 rounded-lg shadow-md border-l-4 border-danger">
+                        <h3 class="text-2xl font-bold mb-2 text-danger">Antes del Juicio</h3>
+                        <ul class="list-disc list-inside space-y-2">
+                            <li>**Nunca modifiques** la HCE tras el incidente.</li>
+                            <li>Contacta inmediatamente con la UDCA y Asesoría Jurídica.</li>
+                            <li>Revisa tu registro con el abogado: tu defensa está allí.</li>
+                        </ul>
+                    </div>
+                    <div class="p-4 bg-red-100 rounded-lg shadow-md border-l-4 border-danger">
+                        <h3 class="text-2xl font-bold mb-2 text-danger">Durante la Declaración</h3>
+                        <ul class="list-disc list-inside space-y-2">
+                            <li>Responde solo a lo que se te pregunta (concisión).</li>
+                            <li>Sé honesto: No recuerdas detalles, solo lo que está escrito.</li>
+                            <li>Apóyate en el registro: "Según mi registro, actué de esta forma a esta hora."</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SLIDE 24: RECURSOS -->
+        <section class="slide" id="slide-24">
+            <div class="slide-content text-center">
+                <h2 class="text-4xl font-bold mb-6 border-b-4 border-primary pb-2">Recursos y Contacto</h2>
+                <div class="text-2xl mt-8 space-y-4">
+                    <p><i class="fas fa-book-open text-primary mr-3"></i> **Normativa:** Ley 41/2002 y LOPD.</p>
+                    <p><i class="fas fa-address-card text-primary mr-3"></i> **Contacto UDCA:** [Información interna del hospital]</p>
+                    <p><i class="fas fa-globe text-primary mr-3"></i> **Recursos PAE:** Guías NANDA-I, NOC, NIC actualizadas.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- SLIDE 25: AGRADECIMIENTOS -->
+        <section class="slide" id="slide-25">
+            <div class="slide-content text-center">
+                <h2 class="text-5xl font-extrabold text-secondary mb-8">¡Gracias por su Atención!</h2>
+                <p class="text-3xl text-gray-700 mb-6">La Calidad Asistencial empieza con la Calidad Documental.</p>
+                <div class="mt-10">
+                    <i class="fas fa-heartbeat text-red-500 text-8xl"></i>
+                </div>
+            </div>
+        </section>
+
+        <!-- SLIDE 26: PREGUNTAS -->
+        <section class="slide" id="slide-26">
+            <div class="slide-content text-center">
+                <h2 class="text-6xl font-extrabold text-primary mb-10">Preguntas</h2>
+                <p class="text-2xl text-gray-700">Abierto a cualquier duda sobre el PAE, la UDCA o la defensa legal.</p>
+                <div class="mt-12 p-8 key-box mx-auto max-w-lg rounded-xl">
+                    <p class="text-xl font-bold">Antonio R. | Enfermero</p>
+                    <p class="text-lg text-gray-600">Noviembre 2025</p>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Botón Flotante para abrir Gemini en una nueva pestaña (Centrado) -->
+    <button id="gemini-float-btn" title="Abrir Gemini AI" onclick="openGeminiLink()">
+        <i class="fas fa-brain"></i>
+    </button>
+
+    <!-- Controles de Navegación y Contador -->
+    <div class="fixed bottom-0 left-0 right-0 p-4 bg-white border-t border-gray-200 shadow-lg flex justify-between items-center z-20">
+        <button id="prev-btn" onclick="navigateSlide(-1)" class="nav-btn bg-primary text-white py-2 px-6 rounded-full font-bold shadow-md opacity-50 cursor-not-allowed" disabled>
+            <i class="fas fa-arrow-left mr-2"></i> Anterior
+        </button>
+
+        <span id="slide-indicator" class="text-lg font-bold text-gray-700">1 / 26</span>
+
+        <button id="next-btn" onclick="navigateSlide(1)" class="nav-btn bg-primary text-white py-2 px-6 rounded-full font-bold shadow-md">
+            Siguiente <i class="fas fa-arrow-right ml-2"></i>
+        </button>
+    </div>
+
+    <!-- Script de navegación y enlace -->
+    <script>
+        const slides = document.querySelectorAll('.slide');
+        let currentSlideIndex = 0;
+        const totalSlides = slides.length;
+
+        function openGeminiLink() {
+            window.open('https://gemini.google.com/', '_blank');
+        }
+
+        function updateSlideDisplay() {
+            slides.forEach((slide, index) => {
+                slide.classList.remove('active', 'prev');
+                // Esto asegura que la diapositiva que se está viendo es la activa
+                if (index === currentSlideIndex) {
+                    slide.classList.add('active');
+                }
+            });
+
+            // Actualizar indicador
+            document.getElementById('slide-indicator').textContent = `${currentSlideIndex + 1} / ${totalSlides}`;
+
+            // Actualizar botones
+            const prevBtn = document.getElementById('prev-btn');
+            const nextBtn = document.getElementById('next-btn');
+
+            prevBtn.disabled = currentSlideIndex === 0;
+            prevBtn.classList.toggle('opacity-50', currentSlideIndex === 0);
+            prevBtn.classList.toggle('cursor-not-allowed', currentSlideIndex === 0);
+
+            nextBtn.disabled = currentSlideIndex === totalSlides - 1;
+            nextBtn.classList.toggle('opacity-50', currentSlideIndex === totalSlides - 1);
+            nextBtn.classList.toggle('cursor-not-allowed', currentSlideIndex === totalSlides - 1);
+        }
+
+        function navigateSlide(direction) {
+            const newIndex = currentSlideIndex + direction;
+
+            if (newIndex >= 0 && newIndex < totalSlides) {
+                currentSlideIndex = newIndex;
+                updateSlideDisplay();
+            }
+        }
+
+        // Navegación por teclado
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowRight' || e.key === ' ') {
+                navigateSlide(1);
+            } else if (e.key === 'ArrowLeft') {
+                navigateSlide(-1);
+            }
+        });
+
+        // Inicializar la primera diapositiva
+        document.addEventListener('DOMContentLoaded', updateSlideDisplay);
+    </script>
+</body>
+</html>
